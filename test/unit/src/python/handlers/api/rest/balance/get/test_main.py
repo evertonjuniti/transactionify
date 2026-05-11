@@ -1,7 +1,6 @@
 """Tests for get balance Lambda handler."""
 
 import json
-import pytest
 from unittest.mock import patch
 from src.python.transactionify.handlers.api.rest.balance.get.main import handler
 

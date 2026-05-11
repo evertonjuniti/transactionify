@@ -1,8 +1,6 @@
 import json
-import pytest
-from unittest.mock import patch, MagicMock
+from unittest.mock import patch
 from src.python.transactionify.handlers.provisioning.main import handler
-from src.python.transactionify.tools.generators.uuid import generate_uuidv7
 
 
 class TestProvisioningHandler:

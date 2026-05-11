@@ -1,7 +1,6 @@
 """Tests for create account Lambda handler."""
 
 import json
-import pytest
 from unittest.mock import patch
 from src.python.transactionify.handlers.api.rest.account.create.main import handler
 
@@ -223,7 +222,6 @@ class TestCreateAccountHandler:
         response = handler(event, None)
 
         assert response['statusCode'] == 401
-        body = json.loads(response['body'])
 
     @patch('src.python.transactionify.handlers.api.rest.account.create.main.create_account')
     def test_handler_dynamodb_error(self, mock_create_account):
@@ -264,7 +262,6 @@ class TestCreateAccountHandler:
         response = handler(event, None)
 
         assert response['statusCode'] == 400
-        body = json.loads(response['body'])
 
     def test_handler_missing_body(self):
         """Test error when body key is missing from event."""
@@ -281,7 +278,6 @@ class TestCreateAccountHandler:
         response = handler(event, None)
 
         assert response['statusCode'] == 400
-        body = json.loads(response['body'])
 
     @patch('src.python.transactionify.handlers.api.rest.account.create.main.create_account')
     def test_handler_does_not_expose_internal_errors(self, mock_create_account):
