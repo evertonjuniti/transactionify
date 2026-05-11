@@ -151,7 +151,7 @@ class TestCreatePayment:
         # Account exists but for different user (returns None when querying with wrong user_id)
         mock_get_item.return_value = None
 
-        with pytest.raises(ValueError) as exc_info:
+        with pytest.raises(ValueError):
             create_payment(
                 user_id='019a4757-c049-7ea8-a110-2ea110c5a6f7',
                 account_id='019a4757-c049-7ea8-a110-2ea110c5a6f8',

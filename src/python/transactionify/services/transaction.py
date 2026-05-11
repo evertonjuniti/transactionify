@@ -35,7 +35,7 @@ def list_transactions(
     account = get_by_full_match(pk=account_pk, sk=account_sk)
 
     if not account:
-        raise ValueError(f"Account not found or does not belong to user")
+        raise ValueError("Account not found or does not belong to user")
 
     # Get account currency
     account_currency = account.get('currency', '')

@@ -1,7 +1,6 @@
 """Tests for create payment Lambda handler."""
 
 import json
-import pytest
 from unittest.mock import patch
 from src.python.transactionify.handlers.api.rest.payment.create.main import handler
 
@@ -215,7 +214,6 @@ class TestCreatePaymentHandler:
         response = handler(event, None)
 
         assert response['statusCode'] == 400
-        body = json.loads(response['body'])
 
     def test_handler_invalid_json(self):
         """Test error when request body is invalid JSON."""
@@ -261,7 +259,6 @@ class TestCreatePaymentHandler:
         response = handler(event, None)
 
         assert response['statusCode'] == 401
-        body = json.loads(response['body'])
 
     def test_handler_missing_account_id(self):
         """Test error when account_id is missing from path parameters."""

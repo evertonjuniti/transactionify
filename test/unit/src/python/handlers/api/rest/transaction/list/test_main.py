@@ -1,7 +1,6 @@
 """Tests for list transactions Lambda handler."""
 
 import json
-import pytest
 from unittest.mock import patch
 from src.python.transactionify.handlers.api.rest.transaction.list.main import handler
 

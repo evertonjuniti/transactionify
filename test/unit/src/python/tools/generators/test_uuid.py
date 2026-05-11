@@ -1,6 +1,5 @@
 """Tests for UUID generation utilities."""
 
-import pytest
 from unittest.mock import MagicMock
 from src.python.transactionify.tools.generators.uuid import generate_uuidv7
 
@@ -57,8 +56,6 @@ class TestGenerateUuidv7:
 
     def test_generate_uuidv7_valid_format(self):
         """Test that generated UUIDs match the expected format."""
-        from src.python.transactionify.tools.validators import is_valid_uuidv7
-
         for _ in range(5):
             uuid = generate_uuidv7()
             # Our fallback implementation should produce valid v7 format

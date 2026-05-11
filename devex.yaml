@@ -49,7 +49,7 @@ local:
 # ---------------------------------------------------------------------------
 ci:
   smallTests:
-    unit: "uv run pytest tests/unit"
+    unit: "uv run pytest test/unit/src/python"
     property: "uv run pytest tests/property"
     contract: "uv run pytest tests/contracts"
     lint: "uvx ruff check ."

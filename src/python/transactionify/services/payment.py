@@ -47,7 +47,7 @@ def create_payment(user_id: str, account_id: str, amount_value: str, amount_curr
     account = get_by_full_match(pk=account_pk, sk=account_sk)
 
     if not account:
-        raise ValueError(f"Account not found or does not belong to user")
+        raise ValueError("Account not found or does not belong to user")
 
     # Validate currency matches account currency
     account_currency = account.get('currency', '')

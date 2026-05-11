@@ -1,6 +1,4 @@
-import json
-import pytest
-from unittest.mock import patch, MagicMock
+from unittest.mock import patch
 from src.python.transactionify.handlers.authorizer.main import (
     handler,
     extract_api_key,

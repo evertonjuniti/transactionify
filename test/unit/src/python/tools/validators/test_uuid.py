@@ -1,4 +1,3 @@
-import pytest
 from src.python.transactionify.tools.validators.uuid import (
     is_valid_uuidv7,
     UUID_V7_PATTERN,
