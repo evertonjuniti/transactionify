@@ -85,13 +85,5 @@ telemetry:
 # `devex upgrade --workflow-version <tag>` to bump both atomically.
 # ---------------------------------------------------------------------------
 workflowVersion:
-  ref: v0.3.2
+  ref: v0.3.3
   auditFormat: ndjson
-
-# ---------------------------------------------------------------------------
-# workflowVersion — governs which version of the reusable workflow is called.
-# Must be a semver tag (e.g. v0.1.0) or a full 40-char SHA. "main" is
-# rejected by the governance job.
-# ---------------------------------------------------------------------------
-workflowVersion:
-  ref: "v0.3.2"
