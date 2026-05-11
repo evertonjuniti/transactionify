@@ -2,7 +2,7 @@
 
 import json
 from typing import Dict, Any
-from transactionify.tools.response import ok, bad_request, unauthorized, not_found, internal_server_error
+from transactionify.tools.response import ok, unauthorized, not_found, internal_server_error
 from transactionify.services.transaction import list_transactions
 
 
@@ -59,24 +59,10 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
     except (KeyError, TypeError):
         return not_found('Account not found')
 
-    # Extract query parameters for pagination
-    query_params = event.get('queryStringParameters') or {}
-
-    # Parse limit (default 20, max 100)
-    try:
-        limit = int(query_params.get('limit', 20))
-        limit = max(1, min(limit, 100))  # Clamp between 1 and 100
-    except (ValueError, TypeError):
-        limit = 20
-
-    # Get cursor for pagination
-    cursor = query_params.get('cursor')
-
     # List transactions
     try:
-        result = list_transactions(user_id, account_id, limit=limit, cursor=cursor)
-        transaction_count = len(result.get('transactions', []))
-        print(f"Successfully retrieved {transaction_count} transactions for account: {account_id}")
+        result = list_transactions(user_id, account_id)
+        print(f"Successfully retrieved {len(result)} transactions for account: {account_id}")
 
         return ok(result)
 
@@ -85,13 +71,9 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
         print(f"Validation error listing transactions: {str(e)}")
         error_msg = str(e).lower()
 
-        # Check for specific error types
-        if 'cursor' in error_msg or 'pagination' in error_msg:
-            return bad_request('Invalid pagination cursor', 'ValidationError')
-        elif 'account not found' in error_msg or 'does not belong' in error_msg:
+        if 'account not found' in error_msg or 'does not belong' in error_msg:
             return not_found('Account not found')
 
-        # Generic validation error
         return not_found('Resource not found')
 
     except Exception as e:
